@@ -69,6 +69,15 @@ public interface XposedModuleInterface {
         @RequiresApi(Build.VERSION_CODES.Q)
         @NonNull
         ClassLoader getDefaultClassLoader();
+
+        /**
+         * Gets the class loader of the current package.
+         * For API 100 compatibility, this returns the same as {@link #getDefaultClassLoader()}.
+         *
+         * @return The class loader.
+         */
+        @NonNull
+        ClassLoader getClassLoader();
     }
 
     /**
@@ -81,6 +90,7 @@ public interface XposedModuleInterface {
          * {@link #getDefaultClassLoader()} if the package has a custom {@link AppComponentFactory}
          * that creates a different classloader.
          */
+        @Override
         @NonNull
         ClassLoader getClassLoader();
 
